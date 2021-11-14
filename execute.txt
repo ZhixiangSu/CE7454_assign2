@@ -1,0 +1,2 @@
+--dataroot datasets\public_web_fonts\BLOOD\A --model StackGAN --rgb_in --rgb_out
+--dataroot datasets\Capitals64\Capitals64 --model cGAN
