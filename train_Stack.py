@@ -13,7 +13,10 @@ from util.visualizer import Visualizer
 from data.data_loader import CreateDataLoader
 
 opt.stack = True
+opt.conditional = True
+# import pdb;pdb.set_trace()
 data_loader = CreateDataLoader(opt)
+
 
 dataset = data_loader.load_data()
 dataset_size = len(data_loader)

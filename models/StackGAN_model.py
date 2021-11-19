@@ -54,7 +54,7 @@ class StackGANModel(BaseModel):
         self.netDE1 = networks.define_Dec(opt.input_nc_1, opt.output_nc_1, opt.ngf,
                                     opt.which_model_netG, opt.norm, opt.use_dropout1, self.gpu_ids)
                             
-
+        # import pdb;pdb.set_trace()
         if self.opt.conditional:
             # not applicable for non-conditional case
             use_sigmoid = opt.no_lsgan
@@ -62,8 +62,6 @@ class StackGANModel(BaseModel):
                 self.preNet_A = networks.define_preNet(self.opt.input_nc_1+self.opt.output_nc_1, self.opt.input_nc_1+self.opt.output_nc_1, which_model_preNet=opt.which_model_preNet,norm=opt.norm, gpu_ids=self.gpu_ids)
 
             nif = opt.input_nc_1+opt.output_nc_1
-
-            
             netD_norm = opt.norm
 
             self.netD1 = networks.define_D(nif, opt.ndf,
@@ -553,13 +551,14 @@ class StackGANModel(BaseModel):
 
 
     def get_current_errors(self):
-        return OrderedDict([('G1_GAN', self.loss_G1_GAN.data[0]),
-                ('G1_L1', self.loss_G1_L1.data[0]),
-                ('G1_MSE_gt', self.loss_G1_MSE_gt.data[0]),
-                ('G1_MSE', self.loss_G1_MSE_rgb2gay.data[0]),
-                ('D1_real', self.loss_D1_real.data[0]),
-                ('D1_fake', self.loss_D1_fake.data[0]),
-                ('G_L1', self.loss_G_L1.data[0])
+        # import pdb;pdb.set_trace()
+        return OrderedDict([('G1_GAN', self.loss_G1_GAN.data.item()),
+                ('G1_L1', self.loss_G1_L1.data.item()),
+                ('G1_MSE_gt', self.loss_G1_MSE_gt.data.item()),
+                ('G1_MSE', self.loss_G1_MSE_rgb2gay.data.item()),
+                ('D1_real', self.loss_D1_real.data.item()),
+                ('D1_fake', self.loss_D1_fake.data.item()),
+                ('G_L1', self.loss_G_L1.data.item())
         ])
 
 

@@ -43,7 +43,7 @@ class BaseOptions():
         self.parser.add_argument('--use_dropout', action='store_true', help='use dropout for the generator')
         self.parser.add_argument('--use_dropout1', action='store_true', help='use dropout for the generator in OrnaNet')
         self.parser.add_argument('--max_dataset_size', type=int, default=float("inf"), help='Maximum number of samples allowed per dataset. If the dataset directory contains more than max_dataset_size, only a subset is loaded.')
-        self.parser.add_argument('--conditional', default=True, action='store_false', help='feed input to the discriminator')
+        self.parser.add_argument('--conditional', action='store_true', help='feed input to the discriminator')
         self.parser.add_argument('--conv3d', action='store_true', help='separate channels by 3d convolution?')
         self.parser.add_argument('--blanks', type=float, default=0.7, help='max ratio (in 26) of the number of glyphs to be blank')
         self.parser.add_argument('--rgb', action='store_true', help='consider all three RGB channels')
@@ -91,7 +91,7 @@ class BaseOptions():
         print('-------------- End ----------------')
 
         # save to the disk
-        expr_dir =  os.path.join(self.opt.checkpoints_dir, self.opt.name)
+        expr_dir = os.path.join(self.opt.checkpoints_dir, self.opt.name)
         util.mkdirs(expr_dir)
         file_name = os.path.join(expr_dir, 'opt.txt')
         with open(file_name, 'wt') as opt_file:

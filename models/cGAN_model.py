@@ -46,8 +46,6 @@ class cGANModel(BaseModel):
                 if opt.which_model_preNet != 'none':
                     self.preNet_A = networks.define_preNet(disc_ch+disc_ch, disc_ch+disc_ch, which_model_preNet=opt.which_model_preNet,norm=opt.norm, gpu_ids=self.gpu_ids)
                 nif = disc_ch+disc_ch
-
-                
                 netD_norm = opt.norm
 
                 self.netD = networks.define_D(nif, opt.ndf,

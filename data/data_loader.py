@@ -28,11 +28,12 @@ def normalize_stack(input,val=0.5):
     #normalize an tensor with arbitrary number of channels:
     # each channel with mean=std=val
     val=0.5
-    len_ = input.size(1)
+    len_ = input.size(0)
     mean = (val,)*len_
     std = (val,)*len_
     t_normal_stack = transforms.Compose([
         transforms.Normalize(mean,std)])
+
     return t_normal_stack(input)
 
 
@@ -181,6 +182,7 @@ class PartialData(object):
         if base_font:        
             self.data_loader_base_iter = iter(self.data_loader_base)
             self.A_base,self.A_base_paths = next(self.data_loader_base_iter)
+
             self.A_base[0,:,:,:]=normalize_stack(self.A_base[0,:,:,:]) 
         else: 
             self.A_base = []
